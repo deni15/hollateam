@@ -1,14 +1,4 @@
 <?php
-$query1=$koneksi->query("SELECT * FROM user_position WHERE pid='$id'");
-$fetch1=$query1->fetch_assoc();
-if ($fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] != 1) {
-    ?>
-    <script type="text/javascript">
-        alert("Kamu tidak punya access mengedit position ini");
-        window.location.href="index.php";   
-    </script>
-    <?php
-}
 $query2=$koneksi->query("SELECT * FROM level");
 ?>
 <div class="content-header row">
@@ -23,7 +13,7 @@ $query2=$koneksi->query("SELECT * FROM level");
                                 </li>
                                 <li class="breadcrumb-item"><a href="?page=position">Position List</a>
                                 </li>
-                                <li class="breadcrumb-item active">Edit Position
+                                <li class="breadcrumb-item active">Add Position
                                 </li>
                             </ol>
                         </div>
@@ -35,26 +25,26 @@ $query2=$koneksi->query("SELECT * FROM level");
                     <form method="post">
                         <div class="card-content">
                             <div class="card-header">
-                                <h4 class="card-title">Edit Position</h4>
+                                <h4 class="card-title">Add Position</h4>
                             </div>
                                 <div class="card-body">
                                     <fieldset class="form-group">
                                         <label for="basicinput">Position Name</label>
-                                        <input type="text" class="form-control" id="basicInput" name="name" value="<?php echo $fetch1['position_name']?>">
+                                        <input type="text" class="form-control" id="basicInput" name="name" value="">
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label for="basicinput">Level</label>
                                         <select name="level" id="select2" class="select2 form-control">
                                             <?php
                                                 while ($fetch2=$query2->fetch_assoc()) {
-                                                    ?><option value="<?php echo $fetch2['lid']?>" <?php if($fetch1['level']==$fetch2['lid']){echo"selected";}echo ">".$fetch2['level_name']?></option><?php
+                                                    ?><option value="<?php echo $fetch2['lid']?>"><?php echo $fetch2['level_name']?></option><?php
                                                 }
                                             ?>
                                         </select>
                                     </fieldset>
                                 </div>
                                 <div class="card-footer">
-                                        <input type="submit" value="Submit" name="edit" class="btn btn-primary float-right" style="margin-top: -10px; margin-bottom: 10px;">
+                                        <input type="submit" value="Submit" name="add" class="btn btn-primary float-right" style="margin-top: -10px; margin-bottom: 10px;">
                                 </div>
                             </div>
                         </div>
@@ -62,16 +52,16 @@ $query2=$koneksi->query("SELECT * FROM level");
             </div>
 
 <?php
-if (isset($_POST['edit'])) {
+if (isset($_POST['add'])) {
     $name = $_POST['name'];
     $level = $_POST['level'];
 
-    $update = $koneksi->query("UPDATE `user_position` SET `position_name`='$name',`level`='$level' WHERE pid='$id'");
+    $update = $koneksi->query("INSERT INTO `user_position`(`position_name`, `company`, `level`) VALUES ('$name','".$_SESSION['company']."','$level')");
 
     if ($update) {
         ?>
         <script type="text/javascript">
-            alert("Update Successful");
+            alert("Add Successful");
             window.location.href="?page=position"
         </script>
         <?php

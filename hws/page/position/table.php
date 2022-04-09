@@ -59,7 +59,7 @@
                                                             ?></td>
                                                             <td style="text-align:center;">
                                                                 <a class="btn btn-primary btn-sm"href="?page=position&action=edit&id=<?php echo base64_encode($fetch['pid']); ?>"><i class="la la-edit"></i> Edit</a>
-                                                                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete"><i class="la la-trash"></i> Delete</a>
+                                                                <a class="btn btn-danger btn-sm delete" data-toggle="modal" data-id="<?php echo $fetch['pid']; ?>"><i class="la la-trash"></i> Delete</a>
                                                             </td>
                                                         </tr>
                                                         <?php
