@@ -14,8 +14,10 @@
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/icheck/custom.css">
+    
     <!-- END: Vendor CSS-->
-
+    <!---- DATATABLES-->
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/datatable/datatables.min.css">
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap-extended.css">

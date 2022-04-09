@@ -2,6 +2,13 @@
 include '../db/conn.php';
 session_start();
 $title = "Login to Holla Workforce System";
+if (isset($_SESSION['hollauser'])) {
+    ?>
+    <script type="text/javascript">
+        window.location.href="index.php"
+    </script>
+    <?php
+}
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -23,10 +30,7 @@ include '../assets/assets/php/header.php';
                         <div class="col-lg-4 col-md-8 col-10 box-shadow-2 p-0">
                             <div class="card border-grey border-lighten-3 m-0">
                                 <div class="card-header border-0">
-                                    <div class="card-title text-center">
-                                        <div class="p-1"><img src="../assets/app-assets/images/logo/logo-dark.png" alt="branding logo"></div>
-                                    </div>
-                                    <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Login with Modern</span>
+                                    <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Login with HWS</span>
                                     </h6>
                                 </div>
                                 <div class="card-content">
@@ -101,7 +105,7 @@ if (isset($_POST['login'])) {
         $_SESSION['hollauser'] = $data['user'];
         $_SESSION['company'] = $data['company'];
         $_SESSION['position'] = $data['position'];
-
+        $_SESSION['name'] = $data['name'];
         ?>
         <script type="text/javascript">
         alert("Login Sukses");
