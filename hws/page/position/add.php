@@ -1,6 +1,6 @@
 <?php
 $query2=$koneksi->query("SELECT * FROM level");
-if ($_SESSION['level_user'] = 4 || $_SESSION['level_user'] = 5) {
+if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
     ?>
     <script type="text/javascript">
         alert("You don't have access to add position");
