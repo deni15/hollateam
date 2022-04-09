@@ -27,6 +27,7 @@ if (!$page) {
 }else{
     $title = "HWS - ".ucfirst($page);
 }
+$id=base64_decode($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -67,4 +68,24 @@ include '../assets/assets/php/footer.php';
 </body>
 <!-- END: Body-->
 
+
+<div class="modal fade text-left" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger white">
+                <h4 class="modal-title white" id="myModalLabel10">are you sure you want to delete this position ?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>by deleting this position, the user in that position will also be deleted.</p>
+                <input type="hidden" value="" id="id">
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-danger">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
