@@ -1,5 +1,13 @@
 <?php
 $query2=$koneksi->query("SELECT * FROM level");
+if ($_SESSION['level_user'] = 4 || $_SESSION['level_user'] = 5) {
+    ?>
+    <script type="text/javascript">
+        alert("You don't have access to add position");
+        window.location.href="index.php";   
+    </script>
+    <?php
+}
 ?>
 <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
