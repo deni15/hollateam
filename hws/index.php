@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 include '../db/conn.php';
 session_start();
 if (!isset($_SESSION['hollauser'])) {
@@ -55,6 +54,10 @@ include '../assets/assets/php/left-menu.php';
                     include "page/position/edit.php";
                 }elseif($action == "add"){
                     include "page/position/add.php";
+                }
+            }elseif($page == "user"){
+                if ($action == "") {
+                    include "page/user/table.php";
                 }
             }
             ?>

@@ -43,34 +43,6 @@ $query2=$koneksi->query("SELECT * FROM level");
                                         <input type="text" class="form-control" id="basicInput" name="name" value="<?php echo $fetch1['position_name']?>">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                    <?php
-                                    if ($_SESSION['level_user'] == 2 || $_SESSION['level_user'] == 3) {
-                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company WHERE CID='".$_SESSION['company']."'");
-                                        $datacompany = $sqlcompany->fetch_assoc();
-                                        ?>
-                                        <fieldset class="form-group">
-                                            <label for="basicinput">Company</label>
-                                            <input type="text" class="form-control" id="basicInput" value="<?php echo $datacompany['company_name'] ?>" disabled>
-                                            <input type="hidden" name="company" value="<?php echo $_SESSION['company'] ?>">
-                                        </fieldset>
-                                        <?php
-                                    }else{
-                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company");
-                                        ?>
-                                            <fieldset class="form-group">
-                                                <label for="basicinput">Company Name</label>
-                                                <select name="company" id="select1" class="select2 form-control">
-                                                    <?php
-                                                    echo $fetch1['company'];
-                                                        while ($fetch2=$sqlcompany->fetch_assoc()) {
-                                                            ?><option value="<?php echo $fetch2['CID']?>" <?php if($fetch1['company']==$fetch2['CID']){echo"selected";}?>><?php echo $fetch2['company_name']?></option><?php
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </fieldset>
-                                        <?php
-                                    }
-                                    ?>
                                         <label for="basicinput">Level</label>
                                         <select name="level" id="select2" class="select2 form-control">
                                             <?php
@@ -93,7 +65,7 @@ $query2=$koneksi->query("SELECT * FROM level");
 if (isset($_POST['edit'])) {
     $name = $_POST['name'];
     $level = $_POST['level'];
-    $company = $_POST['company'];
+
     $update = $koneksi->query("UPDATE `user_position` SET `position_name`='$name',`level`='$level' WHERE pid='$id'");
 
     if ($update) {

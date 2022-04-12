@@ -98,7 +98,7 @@ include '../assets/assets/php/header.php';
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-    $sql = $koneksi->query("SELECT * FROM `user` WHERE `user`='$username' AND `pass`='$password'");
+    $sql = $koneksi->query("SELECT * FROM `user` WHERE `user`='$username' AND `pass`='$password' AND `status`='1'");
     $count = mysqli_num_rows($sql);
     if ($count > 0) {
         $data = $sql->fetch_assoc();
