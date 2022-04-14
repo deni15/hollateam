@@ -19,6 +19,9 @@
     <!-- END: Vendor CSS-->
     <!---- DATATABLES-->
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/extensions/rowReorder.dataTables.min.css">
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap-extended.css">

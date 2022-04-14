@@ -1,7 +1,7 @@
 <?php
 $query1=$koneksi->query("SELECT * FROM user_position WHERE pid='$id'");
 $fetch1=$query1->fetch_assoc();
-if ($fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] == 4 || $fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] == 5) {
+if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5 || $fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] == 3 || $fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] == 2) {
     ?>
     <script type="text/javascript">
         alert("You don't have access to edit this position");
@@ -9,7 +9,21 @@ if ($fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] == 4 |
     </script>
     <?php
 }
-$query2=$koneksi->query("SELECT * FROM level");
+if ($_SESSION['level_user'] > $fetch1['level']) {
+    ?>
+    <script type="text/javascript">
+        alert("You don't have access to edit this position");
+        window.location.href="index.php?page=position";   
+    </script>
+    <?php
+}
+if ($_SESSION['level_user'] == 1) {
+    $query2=$koneksi->query("SELECT * FROM level");
+}elseif ($_SESSION['level_user'] == 2) {
+    $query2=$koneksi->query("SELECT * FROM level WHERE priority != '1'");
+}elseif ($_SESSION['level_user'] == 3) {
+    $query2=$koneksi->query("SELECT * FROM level WHERE priority != '1' AND priority != '2'");
+}
 ?>
 <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">

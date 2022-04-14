@@ -66,10 +66,14 @@ if ($_SESSION['level_user'] == 5) {
                                                     <?php
                                                     $no = 1;
                                                     if ($_SESSION['level_user'] == 1) {
-                                                    $query = $koneksi->query("SELECT * FROM user ORDER BY `status` DESC");
-                                                    }else{
-                                                    $query = $koneksi->query("SELECT * FROM user WHERE company='".$_SESSION['company']."' ORDER BY `status` DESC");
-                                                    }while ($fetch = $query->fetch_assoc()) {
+                                                        $query = $koneksi->query("SELECT * FROM user ORDER BY `status` ASC");
+                                                    }elseif ($_SESSION['level_user'] == 4) {
+                                                        $query = $koneksi->query("SELECT * FROM `user` INNER JOIN user_position ON user.position = user_position.pid WHERE (user_position.level=5) AND user.company='".$_SESSION['company']."' ORDER BY `status` ASC,position");
+                                                    }else {
+                                                        $query = $koneksi->query("SELECT * FROM `user` INNER JOIN user_position ON user.position = user_position.pid WHERE (user_position.level!=1) AND user.company='".$_SESSION['company']."' ORDER BY `status` ASC,position");
+                                                    }
+                                                    
+                                                    while ($fetch = $query->fetch_assoc()) {
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $no++?></td>
@@ -105,12 +109,20 @@ if ($_SESSION['level_user'] == 5) {
                                                             <?php
                                                             if ($_SESSION['level_user'] != 4) {
                                                             ?>
-                                                                <a class="btn btn-primary btn-sm white"href="?page=position&action=edit&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-edit"></i> Edit</a>
-                                                                <a class="btn btn-danger btn-sm delete white" data-toggle="modal" data-id="<?php echo $fetch['id']; ?>"><i class="la la-trash"></i> Delete</a>
-                                                            <?php
+                                                                <a class="btn btn-primary btn-sm white"href="?page=user&action=edit&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-edit"></i> Edit</a>
+                                                                <?php
+                                                                    if ($fetch['status']==1) {
+                                                                ?>
+                                                                    <a href="?page=user&action=resign&resign=<?php echo $fetch['id']; ?>" class="btn btn-danger btn-sm deleteuser white" onclick="return confirm('Are you sure?');"><i class="la la-remove"></i> Resign</a>
+                                                                <?php
+                                                                    }else{
+                                                                ?>
+                                                                        <a href="?page=user&action=reactive&reactive=<?php echo $fetch['id']; ?>" class="btn btn-warning btn-sm deleteuser white" onclick="return confirm('Are you sure?');"><i class="la la-check"></i> Reactive</a>
+                                                                <?php
+                                                                    }
                                                             }
                                                             ?>
-                                                                <a class="btn btn-success btn-sm white" data-toggle="modal" data-id="<?php echo $fetch['id']; ?>"><i class="la la-refresh"></i> Reset</a>
+                                                                <a class="btn btn-success btn-sm white resetuser" data-toggle="modal" data-id="<?php echo $fetch['id']; ?>"><i class="la la-refresh"></i> Reset</a>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -119,7 +131,20 @@ if ($_SESSION['level_user'] == 5) {
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <td colspan="8" style="text-align:right;"><a class="btn btn-success btn-sm" href="?page=position&action=add"><i class="la la-plus"></i> Tambah Position</a></td>
+                                                        <?php
+                                                        if ($_SESSION['level_user']==1) {
+                                                        echo"<th colspan='8' style='text-align:right;'>";
+                                                        }else{
+                                                        echo "<th colspan='7' style='text-align:right;'>";
+                                                        }
+                                                        ?>
+                                                        
+                                                        <?php
+                                                        if ($_SESSION['level_user'] != 4) {
+                                                        ?>
+                                                        <a class="btn btn-success btn-sm" href="?page=user&action=add"><i class="la la-plus"></i> Tambah Position</a></th>
+                                                        <?php
+                                                        }?>
                                                     </tr>
                                                 </tfoot>
                                             </table>

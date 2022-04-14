@@ -11,6 +11,13 @@ if ($fetch1['company'] != $_SESSION['company'] && $_SESSION['level_user'] == 4 |
         window.location.href="../../index.php";   
     </script>
     <?php
+}elseif ($_SESSION['level_user'] > $fetch1['level']) {
+    ?>
+    <script type="text/javascript">
+        alert("You don't have access to delete this position");
+        window.location.href="../../index.php?page=position";   
+    </script>
+    <?php
 }else{
     $delete = $koneksi->query("DELETE FROM `user_position` WHERE `pid`='$id'");
     if ($delete) {

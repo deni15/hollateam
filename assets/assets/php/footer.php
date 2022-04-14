@@ -14,6 +14,10 @@
     <script src="../assets/app-assets/vendors/js/charts/chart.min.js"></script>
     <script src="../assets/app-assets/vendors/js/charts/apexcharts/apexcharts.min.js"></script>
     <script src="../assets/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="../assets/app-assets/vendors/js/tables/jquery-1.12.3.js"></script>
+    <script src="../assets/app-assets/vendors/js/tables/jquery.dataTables.min.js"></script>
+    <script src="../assets/app-assets/vendors/js/tables/datatable/datatables.responsive.min.js"></script>
+    <script src="../assets/app-assets/vendors/js/tables/datatable/datatables.rowReorder.min.js"></script>
     <script src="../assets/app-assets/js/scripts/forms/select/form-select2.js"></script>
     <script src="../assets/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <!-- END: Page Vendor JS-->
@@ -27,8 +31,13 @@
     <script src="../assets/app-assets/js/scripts/pages/dashboard-crypto.js"></script>
     <!-- END: Page JS-->
 <script type="text/javascript">
-$(document).ready( function () {
-    $('#dt').DataTable();
+$(document).ready(function() {
+    var table = $('#dt').DataTable( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
 } );
 </script>
 <script type="text/javascript">

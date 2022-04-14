@@ -1,5 +1,12 @@
 <?php
-$query2=$koneksi->query("SELECT * FROM level");
+if ($_SESSION['level_user'] == 1) {
+    $query2=$koneksi->query("SELECT * FROM level");
+}elseif ($_SESSION['level_user'] == 2) {
+    $query2=$koneksi->query("SELECT * FROM level WHERE priority != '1'");
+}elseif ($_SESSION['level_user'] == 3) {
+    $query2=$koneksi->query("SELECT * FROM level WHERE priority != '1' AND priority != '2'");
+}
+
 if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
     ?>
     <script type="text/javascript">
@@ -11,7 +18,7 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
 ?>
 <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Edit Position</h3>
+                    <h3 class="content-header-title">Add Position</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">

@@ -8,7 +8,7 @@
             <?php
             if ($_SESSION['level_user'] == 1 || $_SESSION['level_user'] == 2 || $_SESSION['level_user'] == 3 || $_SESSION['level_user'] == 4) {
             ?>
-            <li class="navigation-header hover"><span>Admin Panel</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Apps"></i></li>
+            <li class="navigation-header hover"><span>Admin Panel</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Admin Panel"></i></li>
             <?php }
             if ($_SESSION['level_user'] == 1 || $_SESSION['level_user'] == 2 || $_SESSION['level_user'] == 3) {
             ?>
