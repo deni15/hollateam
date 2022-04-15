@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>by deleting this position, the user in that position will also be deleted.</p>
+                <p>by deleting this position, the user in that position will be also marked as not active.</p>
                 <input type="hidden" name="delete" value="" id="id">
             <div class="modal-footer">
                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>

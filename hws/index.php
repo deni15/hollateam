@@ -67,6 +67,28 @@ include '../assets/assets/php/left-menu.php';
                     include "page/user/reactive.php";
                 }elseif ($action == "edit") {
                     include "page/user/edit.php";
+                }elseif ($action == "view") {
+                    include "page/user/view.php";
+                }
+            }elseif ($page == "segmentation") {
+                if ($action == "") {
+                    include "page/segmentation/table.php";
+                }elseif ($action == "add") {
+                    include "page/segmentation/add.php";
+                }elseif ($action == "edit") {
+                    include "page/segmentation/edit.php";
+                }elseif ($action == "view") {
+                    include "page/segmentation/view.php";
+                }
+            }elseif ($page == "company") {
+                if ($action == "") {
+                    include "page/company/table.php";
+                }elseif ($action == "add") {
+                    include "page/company/add.php";
+                }elseif ($action == "edit") {
+                    include "page/company/edit.php";
+                }elseif ($action == "view") {
+                    include "page/company/view.php";
                 }
             }
             ?>
@@ -88,6 +110,10 @@ if ($page == "position") {
     include "page/position/modal.php";
 }elseif ($page == "user"){
     include "page/user/modal.php";
+}elseif ($page == "segmentation"){
+    include "page/segmentation/modal.php";
+}elseif ($page == "company"){
+    include "page/company/modal.php";
 }
 ?>
 <script type="text/javascript">

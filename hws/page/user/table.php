@@ -117,11 +117,13 @@ if ($_SESSION['level_user'] == 5) {
                                                                 <?php
                                                                     }else{
                                                                 ?>
+
                                                                         <a href="?page=user&action=reactive&reactive=<?php echo $fetch['id']; ?>" class="btn btn-warning btn-sm deleteuser white" onclick="return confirm('Are you sure?');"><i class="la la-check"></i> Reactive</a>
                                                                 <?php
                                                                     }
                                                             }
                                                             ?>
+                                                                <a class="btn btn-default btn-sm"href="?page=user&action=view&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-eye"></i> View</a>
                                                                 <a class="btn btn-success btn-sm white resetuser" data-toggle="modal" data-id="<?php echo $fetch['id']; ?>"><i class="la la-refresh"></i> Reset</a>
                                                             </td>
                                                         </tr>
@@ -142,7 +144,7 @@ if ($_SESSION['level_user'] == 5) {
                                                         <?php
                                                         if ($_SESSION['level_user'] != 4) {
                                                         ?>
-                                                        <a class="btn btn-success btn-sm" href="?page=user&action=add"><i class="la la-plus"></i> Tambah Position</a></th>
+                                                        <a class="btn btn-success btn-sm" href="?page=user&action=add"><i class="la la-plus"></i> Add Position</a></th>
                                                         <?php
                                                         }?>
                                                     </tr>

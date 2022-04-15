@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/icheck/custom.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/selects/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/line-awesome/css/line-awesome.min.css">
     
     <!-- END: Vendor CSS-->
     <!---- DATATABLES-->

@@ -18,11 +18,11 @@ if ($_SESSION['level_user'] > $fetch1['level']) {
     <?php
 }
 if ($_SESSION['level_user'] == 1) {
-    $query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>=".$_SESSION['level_user']." ORDER BY level ASC");
+    $query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>='".$_SESSION['level_user']."' AND pid !=0 ORDER BY level ASC");
 }elseif ($_SESSION['level_user'] == 2) {
-    $query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>=".$_SESSION['level_user']." ORDER BY level ASC");
+    $query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>='".$_SESSION['level_user']."' AND pid !=0  ORDER BY level ASC");
 }elseif ($_SESSION['level_user'] == 3) {
-    $query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>=".$_SESSION['level_user']." ORDER BY level ASC");
+    $query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>='".$_SESSION['level_user']."' AND pid !=0 ORDER BY level ASC");
 }
 ?>
             <div class="content-header row">
@@ -72,7 +72,7 @@ if ($_SESSION['level_user'] == 1) {
                                         </fieldset>
                                         <?php
                                     }else{
-                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company");
+                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company WHERE CID!=0");
                                         ?>
                                             <fieldset class="form-group">
                                                 <label for="basicinput">Company Name</label>

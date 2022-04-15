@@ -59,7 +59,7 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                         </fieldset>
                                         <?php
                                     }else{
-                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company");
+                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company WHERE CID!=0");
                                         ?>
                                             <fieldset class="form-group">
                                                 <label for="basicinput">Company Name</label>

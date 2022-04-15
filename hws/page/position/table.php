@@ -58,9 +58,9 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                                     <?php
                                                     $no = 1;
                                                     if ($_SESSION['level_user'] == 2 || $_SESSION['level_user'] == 3 ) {
-                                                        $query = $koneksi->query("SELECT * FROM user_position WHERE company='".$_SESSION['company']."' AND level!=1");
+                                                        $query = $koneksi->query("SELECT * FROM user_position WHERE company='".$_SESSION['company']."' AND level!=1 AND pid!=0");
                                                     }else{
-                                                        $query = $koneksi->query("SELECT * FROM user_position");
+                                                        $query = $koneksi->query("SELECT * FROM user_position WHERE pid!='0'");
                                                     }
                                                     while ($fetch = $query->fetch_assoc()) {
                                                         ?>
@@ -83,7 +83,7 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th colspan="4" style="text-align:right;"><a class="btn btn-success btn-sm" href="?page=position&action=add"><i class="la la-plus"></i> Tambah Position</a></th>
+                                                        <th colspan="4" style="text-align:right;"><a class="btn btn-success btn-sm" href="?page=position&action=add"><i class="la la-plus"></i> Add Position</a></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>

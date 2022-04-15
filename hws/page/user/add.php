@@ -1,5 +1,5 @@
 <?php
-$query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>=".$_SESSION['level_user']." ORDER BY level ASC");
+$query2=$koneksi->query("SELECT * FROM `user_position` WHERE `level`>='".$_SESSION['level_user']."' AND pid!=0 ORDER BY level ASC");
 if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
     ?>
     <script type="text/javascript">
@@ -56,7 +56,7 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                         </fieldset>
                                         <?php
                                     }else{
-                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company");
+                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company WHERE CID!=0");
                                         ?>
                                             <fieldset class="form-group">
                                                 <label for="basicinput">Company Name</label>

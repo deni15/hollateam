@@ -14,7 +14,6 @@
     <script src="../assets/app-assets/vendors/js/charts/chart.min.js"></script>
     <script src="../assets/app-assets/vendors/js/charts/apexcharts/apexcharts.min.js"></script>
     <script src="../assets/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src="../assets/app-assets/vendors/js/tables/jquery-1.12.3.js"></script>
     <script src="../assets/app-assets/vendors/js/tables/jquery.dataTables.min.js"></script>
     <script src="../assets/app-assets/vendors/js/tables/datatable/datatables.responsive.min.js"></script>
     <script src="../assets/app-assets/vendors/js/tables/datatable/datatables.rowReorder.min.js"></script>
