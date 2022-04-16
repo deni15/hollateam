@@ -50,6 +50,7 @@ if ($_SESSION['level_user'] != 1 ) {
                                                     <tr role="row">
                                                         <th width="5">No</th>
                                                         <th>Company Name</th>
+                                                        <th>Action</th>
                                                     </tr>   
                                                 </thead>
                                                 <tbody>
@@ -62,8 +63,18 @@ if ($_SESSION['level_user'] != 1 ) {
                                                             <td><?php echo $no++?></td>
                                                             <td><?php echo $fetch['company_name']?></td>
                                                             <td style="text-align:center;">
-                                                                <a class="btn btn-primary btn-sm white"href="?page=company&action=edit&id=<?php echo base64_encode($fetch['CID']); ?>"><i class="la la-edit"></i> Edit</a>
-                                                                <a class="btn btn-danger btn-sm delete white" data-toggle="modal" data-id="<?php echo $fetch['CID']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                            <div class="dropdown">
+                                                                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="la la-cogs"></i>
+                                                                Action
+                                                                </a>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item"href="?page=company&action=edit&id=<?php echo base64_encode($fetch['CID']); ?>"><i class="la la-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item delete" data-toggle="modal" data-id="<?php echo $fetch['CID']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                                </div>
+                                                            </div>
+
                                                             </td>
                                                         </tr>
                                                         <?php

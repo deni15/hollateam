@@ -73,8 +73,18 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                                                 echo $fetchlevel['level_name'];
                                                             ?></td>
                                                             <td style="text-align:center;">
-                                                                <a class="btn btn-primary btn-sm white"href="?page=position&action=edit&id=<?php echo base64_encode($fetch['pid']); ?>"><i class="la la-edit"></i> Edit</a>
-                                                                <a class="btn btn-danger btn-sm delete white" data-toggle="modal" data-id="<?php echo $fetch['pid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                            <div class="dropdown">
+                                                                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="la la-cogs"></i>
+                                                                Action
+                                                                </a>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item"href="?page=position&action=edit&id=<?php echo base64_encode($fetch['pid']); ?>"><i class="la la-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item delete" data-toggle="modal" data-id="<?php echo $fetch['pid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                                </div>
+                                                            </div>
+
                                                             </td>
                                                         </tr>
                                                         <?php

@@ -27,6 +27,9 @@
                 ?>
                 <li class="<?php if ($page =="segmentation") { echo "active"; }else{echo "nav-item";} ?>"><a href="?page=segmentation"><i class="la la-map-marked-alt"></i><span class="menu-title" data-i18n="eCommerce">Segmentation</span></a></li>
                 <?php }?>
+                
+            <li class="navigation-header hover"><span>Task Panel</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Task Panel"></i></li>
+            <li class="<?php if ($page =="task") { echo "active"; }else{echo "nav-item";} ?>"><a href="?page=task"><i class="la la-clipboard-list"></i><span class="menu-title" data-i18n="eCommerce">Task</span></a></li>
             </ul>
         </div>
     </div>

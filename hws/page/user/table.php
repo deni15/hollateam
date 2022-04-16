@@ -106,25 +106,34 @@ if ($_SESSION['level_user'] == 5) {
                                                                 }
                                                                 ?>
                                                             <td style="text-align:center;">
-                                                            <?php
+                                                            <div class="dropdown">
+                                                                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="la la-cogs"></i>
+                                                                Action
+                                                                </a>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <?php
                                                             if ($_SESSION['level_user'] != 4) {
                                                             ?>
-                                                                <a class="btn btn-primary btn-sm white"href="?page=user&action=edit&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-edit"></i> Edit</a>
+                                                                <a class="dropdown-item"href="?page=user&action=edit&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-edit"></i> Edit</a>
                                                                 <?php
                                                                     if ($fetch['status']==1) {
                                                                 ?>
-                                                                    <a href="?page=user&action=resign&resign=<?php echo $fetch['id']; ?>" class="btn btn-danger btn-sm deleteuser white" onclick="return confirm('Are you sure?');"><i class="la la-remove"></i> Resign</a>
+                                                                    <a href="?page=user&action=resign&resign=<?php echo $fetch['id']; ?>" class="dropdown-item deleteuser" onclick="return confirm('Are you sure?');"><i class="la la-remove"></i> Resign</a>
                                                                 <?php
                                                                     }else{
                                                                 ?>
 
-                                                                        <a href="?page=user&action=reactive&reactive=<?php echo $fetch['id']; ?>" class="btn btn-warning btn-sm deleteuser white" onclick="return confirm('Are you sure?');"><i class="la la-check"></i> Reactive</a>
+                                                                        <a href="?page=user&action=reactive&reactive=<?php echo $fetch['id']; ?>" class="dropdown-item deleteuser" onclick="return confirm('Are you sure?');"><i class="la la-check"></i> Reactive</a>
                                                                 <?php
                                                                     }
                                                             }
                                                             ?>
-                                                                <a class="btn btn-default btn-sm"href="?page=user&action=view&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-eye"></i> View</a>
-                                                                <a class="btn btn-success btn-sm white resetuser" data-toggle="modal" data-id="<?php echo $fetch['id']; ?>"><i class="la la-refresh"></i> Reset</a>
+                                                                <a class="dropdown-item"href="?page=user&action=view&id=<?php echo base64_encode($fetch['id']); ?>"><i class="la la-eye"></i> View</a>
+                                                                <a class="dropdown-item resetuser" data-toggle="modal" data-id="<?php echo $fetch['id']; ?>"><i class="la la-refresh"></i> Reset</a>
+                                                                </div>
+                                                            </div>
                                                             </td>
                                                         </tr>
                                                         <?php

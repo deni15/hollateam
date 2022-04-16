@@ -89,9 +89,18 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                                         ?>
                                                             <td><?php echo $fetch['s_address']?></td>
                                                             <td style="text-align:center;">
-                                                                <a class="btn btn-primary btn-sm white"href="?page=segmentation&action=edit&id=<?php echo base64_encode($fetch['sid']); ?>"><i class="la la-edit"></i> Edit</a>
-                                                                <a class="btn btn-success btn-sm"href="?page=segmentation&action=view&id=<?php echo base64_encode($fetch['sid']); ?>"><i class="la la-eye"></i> View</a>
-                                                                <a class="btn btn-danger btn-sm delete white" data-toggle="modal" data-id="<?php echo $fetch['sid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                            <div class="dropdown">
+                                                                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="la la-cogs"></i>
+                                                                Action
+                                                                </a>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item"href="?page=segmentation&action=edit&id=<?php echo base64_encode($fetch['sid']); ?>"><i class="la la-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item"href="?page=segmentation&action=view&id=<?php echo base64_encode($fetch['sid']); ?>"><i class="la la-eye"></i> View</a>
+                                                                    <a class="dropdown-item delete" data-toggle="modal" data-id="<?php echo $fetch['sid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                                </div>
+                                                            </div>
                                                             </td>
                                                         </tr>
                                                         <?php
