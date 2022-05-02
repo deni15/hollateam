@@ -1,6 +1,6 @@
 <?php
-error_reporting(0);
 include '../db/conn.php';
+date_default_timezone_set("Asia/Bangkok");
 session_start();
 if (!isset($_SESSION['hollauser'])) {
     ?>
@@ -36,7 +36,7 @@ $id=base64_decode($_GET['id']);
 <?php
 include '../assets/assets/php/header.php';
 ?>
-<body class="vertical-layout vertical-menu 2-columns   fixed-navbar menu-collapsed" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+<body class="vertical-layout vertical-compact-menu 2-columns   fixed-navbar " data-open="click" data-menu="vertical-compact-menu" data-col="2-columns">
 
 <?php
 include '../assets/assets/php/top-nav.php';
@@ -90,6 +90,21 @@ include '../assets/assets/php/left-menu.php';
                 }elseif ($action == "view") {
                     include "page/company/view.php";
                 }
+            }elseif ($page == "task") {
+                if ($action == "") {
+                    include "page/task/table.php";
+                }elseif ($action == "remark") {
+                    include "page/task/addremark.php";
+                }
+            }
+            elseif($page== ""){
+                
+            }else{
+                ?>
+                    <script type="text/javascript">
+                        window.location.href="index.php"
+                    </script>
+                <?php
             }
             ?>
             
