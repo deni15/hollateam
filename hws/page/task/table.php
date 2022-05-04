@@ -148,6 +148,9 @@ if (isset($_POST['submit'])) {
 }
 }
 ?>
+<?php
+                                if ($_SESSION['level_user'] != 5 ) {
+                                ?>
             <div class="content-body">
                 <section id="configuration">
                     <div class="row">
@@ -164,9 +167,7 @@ if (isset($_POST['submit'])) {
                                         </ul>
                                     </div>
                                 </div>
-                                <?php
-                                if ($_SESSION['level_user'] != 5 ) {
-                                ?>
+                                
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                     <div class="table-responsive"> 
