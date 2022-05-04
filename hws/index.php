@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 include '../db/conn.php';
+date_default_timezone_set("Asia/Bangkok");
 session_start();
 if (!isset($_SESSION['hollauser'])) {
     ?>
@@ -36,7 +37,7 @@ $id=base64_decode($_GET['id']);
 <?php
 include '../assets/assets/php/header.php';
 ?>
-<body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+<body class="vertical-layout vertical-compact-menu 2-columns   fixed-navbar " data-open="click" data-menu="vertical-compact-menu" data-col="2-columns">
 
 <?php
 include '../assets/assets/php/top-nav.php';
@@ -56,8 +57,60 @@ include '../assets/assets/php/left-menu.php';
                 }elseif($action == "add"){
                     include "page/position/add.php";
                 }
+            }elseif($page == "user"){
+                if ($action == "") {
+                    include "page/user/table.php";
+                }elseif ($action == "add") {
+                    include "page/user/add.php";
+                }elseif ($action == "resign") {
+                    include "page/user/resign.php";
+                }elseif ($action == "reactive") {
+                    include "page/user/reactive.php";
+                }elseif ($action == "edit") {
+                    include "page/user/edit.php";
+                }elseif ($action == "view") {
+                    include "page/user/view.php";
+                }
+            }elseif ($page == "segmentation") {
+                if ($action == "") {
+                    include "page/segmentation/table.php";
+                }elseif ($action == "add") {
+                    include "page/segmentation/add.php";
+                }elseif ($action == "edit") {
+                    include "page/segmentation/edit.php";
+                }elseif ($action == "view") {
+                    include "page/segmentation/view.php";
+                }
+            }elseif ($page == "company") {
+                if ($action == "") {
+                    include "page/company/table.php";
+                }elseif ($action == "add") {
+                    include "page/company/add.php";
+                }elseif ($action == "edit") {
+                    include "page/company/edit.php";
+                }elseif ($action == "view") {
+                    include "page/company/view.php";
+                }
+            }elseif ($page == "task") {
+                if ($action == "") {
+                    include "page/task/table.php";
+                }elseif ($action == "remark") {
+                    include "page/task/addremark.php";
+                }elseif ($action == "view") {
+                    include "page/task/view.php";
+                }
+            }
+            elseif($page== ""){
+                
+            }else{
+                ?>
+                    <script type="text/javascript">
+                        window.location.href="index.php"
+                    </script>
+                <?php
             }
             ?>
+            
         </div>
     </div>
     <!-- END: Content-->
@@ -70,36 +123,32 @@ include '../assets/assets/php/footer.php';
 </body>
 <!-- END: Body-->
 
-
-<div class="modal fade text-left" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form action="page/position/delete.php" method="get">
-        <div class="modal-content">
-            <div class="modal-header bg-danger white">
-                <h4 class="modal-title white" id="myModalLabel10">are you sure you want to delete this position ?</h4>
-                <input type="hidden" id="delete" name="id" value="">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>by deleting this position, the user in that position will also be deleted.</p>
-                <input type="hidden" name="delete" value="" id="id">
-            <div class="modal-footer">
-                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn-outline-danger" value="Delete">
-            </div>
-        </div>
-        </form>
-    </div>
-</div>
+<?php
+if ($page == "position") {
+    include "page/position/modal.php";
+}elseif ($page == "user"){
+    include "page/user/modal.php";
+}elseif ($page == "segmentation"){
+    include "page/segmentation/modal.php";
+}elseif ($page == "company"){
+    include "page/company/modal.php";
+}elseif ($page == "task"){
+    include "page/task/modal.php";
+}
+?>
 <script type="text/javascript">
-    $(document).on("click", ".delete", function () {
-     var id = $(this).data('id');
-     $(".modal-body #id").val(id);
-     // As pointed out in comments, 
-     // it is unnecessary to have to manually call the modal.
-     $('#delete').modal('show');
-});
-</script>
+$(document).ready(function() {
+    $("#show_hide_password a").on('click', function(event) {
+        event.preventDefault();
+        if($('#show_hide_password input').attr("type") == "text"){
+            $('#show_hide_password input').attr('type', 'password');
+            $('#show_hide_password i').addClass( "la-eye-slash" );
+            $('#show_hide_password i').removeClass( "la-eye" );
+        }else if($('#show_hide_password input').attr("type") == "password"){
+            $('#show_hide_password input').attr('type', 'text');
+            $('#show_hide_password i').removeClass( "la-eye-slash" );
+            $('#show_hide_password i').addClass( "la-eye" );
+        }
+    });
+});</script>
 </html>

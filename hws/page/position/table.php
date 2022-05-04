@@ -1,4 +1,14 @@
-            <div class="content-header row">
+<?php
+if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
+    ?>
+    <script type="text/javascript">
+        alert("You don't have access to  this page");
+        window.location.href="index.php";   
+    </script>
+    <?php
+}
+?>
+<div class="content-header row">
                 
                 <div class="content-header-left col-md-6 col-12 mb-2">
                     <h3 class="content-header-title">Position List</h3>
@@ -47,7 +57,11 @@
                                                 <tbody>
                                                     <?php
                                                     $no = 1;
-                                                    $query = $koneksi->query("SELECT * FROM user_position WHERE company='".$_SESSION['company']."'");
+                                                    if ($_SESSION['level_user'] == 2 || $_SESSION['level_user'] == 3 ) {
+                                                        $query = $koneksi->query("SELECT * FROM user_position WHERE company='".$_SESSION['company']."' AND level!=1 AND pid!=0");
+                                                    }else{
+                                                        $query = $koneksi->query("SELECT * FROM user_position WHERE pid!='0'");
+                                                    }
                                                     while ($fetch = $query->fetch_assoc()) {
                                                         ?>
                                                         <tr>
@@ -59,8 +73,18 @@
                                                                 echo $fetchlevel['level_name'];
                                                             ?></td>
                                                             <td style="text-align:center;">
-                                                                <a class="btn btn-primary btn-sm"href="?page=position&action=edit&id=<?php echo base64_encode($fetch['pid']); ?>"><i class="la la-edit"></i> Edit</a>
-                                                                <a class="btn btn-danger btn-sm delete" data-toggle="modal" data-id="<?php echo $fetch['pid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                            <div class="dropdown">
+                                                                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="la la-cogs"></i>
+                                                                Action
+                                                                </a>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                    <a class="dropdown-item"href="?page=position&action=edit&id=<?php echo base64_encode($fetch['pid']); ?>"><i class="la la-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item delete" data-toggle="modal" data-id="<?php echo $fetch['pid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                                </div>
+                                                            </div>
+
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -69,7 +93,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <td colspan="4" style="text-align:right;"><a class="btn btn-success btn-sm" href="?page=position&action=add"><i class="la la-plus"></i> Tambah Position</a></td>
+                                                        <th colspan="4" style="text-align:right;"><a class="btn btn-success btn-sm" href="?page=position&action=add"><i class="la la-plus"></i> Add Position</a></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>

@@ -1,5 +1,12 @@
 <?php
-$query2=$koneksi->query("SELECT * FROM level");
+if ($_SESSION['level_user'] == 1) {
+    $query2=$koneksi->query("SELECT * FROM level");
+}elseif ($_SESSION['level_user'] == 2) {
+    $query2=$koneksi->query("SELECT * FROM level WHERE priority != '1'");
+}elseif ($_SESSION['level_user'] == 3) {
+    $query2=$koneksi->query("SELECT * FROM level WHERE priority != '1' AND priority != '2'");
+}
+
 if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
     ?>
     <script type="text/javascript">
@@ -11,7 +18,7 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
 ?>
 <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Edit Position</h3>
+                    <h3 class="content-header-title">Add Position</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -40,9 +47,36 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
                                         <label for="basicinput">Position Name</label>
                                         <input type="text" class="form-control" id="basicInput" name="name" value="">
                                     </fieldset>
+                                    <?php
+                                    if ($_SESSION['level_user'] == 2 || $_SESSION['level_user'] == 3) {
+                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company WHERE CID='".$_SESSION['company']."'");
+                                        $datacompany = $sqlcompany->fetch_assoc();
+                                        ?>
+                                        <fieldset class="form-group">
+                                            <label for="basicinput">Company</label>
+                                            <input type="text" class="form-control" id="basicInput" value="<?php echo $datacompany['company_name'] ?>" disabled>
+                                            <input type="hidden" name="company" value="<?php echo $_SESSION['company'] ?>">
+                                        </fieldset>
+                                        <?php
+                                    }else{
+                                        $sqlcompany = $koneksi->query("SELECT * FROM tbl_company WHERE CID!=0");
+                                        ?>
+                                            <fieldset class="form-group">
+                                                <label for="basicinput">Company Name</label>
+                                                <select name="company" id="select2" class="select2 form-control">
+                                                    <?php
+                                                        while ($fetch2=$sqlcompany->fetch_assoc()) {
+                                                            ?><option value="<?php echo $fetch2['CID']?>"><?php echo $fetch2['company_name']?></option><?php
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </fieldset>
+                                        <?php
+                                    }
+                                    ?>
                                     <fieldset class="form-group">
                                         <label for="basicinput">Level</label>
-                                        <select name="level" id="select2" class="select2 form-control">
+                                        <select name="level" id="select1" class="select2 form-control">
                                             <?php
                                                 while ($fetch2=$query2->fetch_assoc()) {
                                                     ?><option value="<?php echo $fetch2['lid']?>"><?php echo $fetch2['level_name']?></option><?php
@@ -63,8 +97,8 @@ if ($_SESSION['level_user'] == 4 || $_SESSION['level_user'] == 5) {
 if (isset($_POST['add'])) {
     $name = $_POST['name'];
     $level = $_POST['level'];
-
-    $update = $koneksi->query("INSERT INTO `user_position`(`position_name`, `company`, `level`) VALUES ('$name','".$_SESSION['company']."','$level')");
+    $company = $_POST['company'];
+    $update = $koneksi->query("INSERT INTO `user_position`(`position_name`, `company`, `level`) VALUES ('$name','$company','$level')");
 
     if ($update) {
         ?>

@@ -15,19 +15,24 @@
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/icheck/custom.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/forms/selects/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/line-awesome/css/line-awesome.min.css">
     
     <!-- END: Vendor CSS-->
     <!---- DATATABLES-->
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/extensions/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/vendors/css/tables/extensions/rowReorder.dataTables.min.css">
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap-extended.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/colors.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/pages/timeline.css">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/core/menu/menu-types/vertical-compact-menu.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/pages/login-register.css">
     <!-- END: Page CSS-->
