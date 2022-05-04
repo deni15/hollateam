@@ -2,9 +2,11 @@
 
 $selectuser = $koneksi->query("SELECT * FROM `user` INNER JOIN user_position ON user_position.pid=user.position WHERE user_position.level=5 AND user.company='".$_SESSION['company']."'");
 $selectsegment = $koneksi->query("SELECT * FROM `tbl_segmenation` WHERE `company`='".$_SESSION['company']."'");
+
+if ($_SESSION['level_user'] == 4) {
 ?>
-<div class="content-header row">
-                
+
+<div class="content-header row">              
             </div>
             <div class="content-body">
                 <section id="configuration">
@@ -50,8 +52,8 @@ $selectsegment = $koneksi->query("SELECT * FROM `tbl_segmenation` WHERE `company
                                                 <fieldset class="form-group">
                                                 <label for="basicinput">Target</label>
                                                 <select name="target" id="" class="form-control">
-                                                    <option value="Normal">Before</option>
-                                                    <option value="Corrective">After</option>
+                                                    <option value="before">Before</option>
+                                                    <option value="after">After</option>
                                                 </select>
                                                 </fieldset>
                                             </div>  
@@ -144,6 +146,7 @@ if (isset($_POST['submit'])) {
         <?php
     }
 }
+}
 ?>
             <div class="content-body">
                 <section id="configuration">
@@ -166,7 +169,7 @@ if (isset($_POST['submit'])) {
                                 ?>
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <div class="table-responsive"> 
+                                    <div class="table-responsive"> 
                                                 <table class="table table-striped table-bordered zero-configuration dataTable" id="dt" style="">
                                                 <thead>
                                                     <tr role="row">
@@ -220,7 +223,12 @@ if (isset($_POST['submit'])) {
                                                             }else{
                                                                 "";
                                                             }
-                                                            ?> <a class="btn btn-sm btn-info" href="?page=task&action=remark&tid=<?php echo base64_encode($fetch['tid']) ?>" target="_blank"><i class="la la-plus"></i></a></td>
+                                                            if ($_SESSION['level_user'] == 4) {
+                                                            ?> 
+                                                            <a class="btn btn-sm btn-info" href="?page=task&action=remark&tid=<?php echo base64_encode($fetch['tid']) ?>" target="popup" onclick="window.open('?page=task&action=remark&tid=<?php echo base64_encode($fetch['tid']) ?>','name','width=600,height=400')"><i class="la la-plus"></i></a></td>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <td>
                                                             <div class="dropdown">
                                                                 <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -230,7 +238,13 @@ if (isset($_POST['submit'])) {
 
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                     <a class="dropdown-item"href="?page=task&action=view&id=<?php echo base64_encode($fetch['tid']); ?>"><i class="la la-eye"></i> View</a>
+                                                                    <?php
+                                                                    if ($_SESSION['level_user'] == 4) {
+                                                                    ?>
                                                                     <a class="dropdown-item delete" data-toggle="modal" data-id="<?php echo $fetch['tid']; ?>"><i class="la la-trash"></i> Delete</a>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
                                                                 </div>
                                                             </div>
                                                             </td>
@@ -239,11 +253,7 @@ if (isset($_POST['submit'])) {
                                                     }
                                                     ?>
                                                 </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                       <th></th> 
-                                                    </tr>
-                                                </tfoot>
+                                                
                                             </table>
                                         </div>
                                     </div>

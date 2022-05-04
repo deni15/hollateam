@@ -3,7 +3,24 @@ $tid = base64_decode($_GET['tid']);
 $sql = $koneksi->query("SELECT * FROM `task` WHERE `tid`='$tid'");
 $data = $sql->fetch_assoc();
 ?>
-
+<div class="content-header row">
+                
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Add Remark</h3>
+        <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Home</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="?page=task">Task</a>
+                    </li>
+                    <li class="breadcrumb-item active">Add Remark
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="content-body">
                 <section id="configuration">
                     <div class="row">
@@ -35,7 +52,7 @@ $data = $sql->fetch_assoc();
                                                     <th>Aging</th>
                                                 </tr>
                                                 <tr>
-                                                    <td><?php echo $data['tid'] ?></td>
+                                                    <td><?php echo "HTT#".$data['tid'] ?></td>
                                                     <td><?php echo $data['category'] ?></td>
                                                     <td><?php echo $data['segmentation'] ?></td>
                                                     <td><?php 
@@ -55,15 +72,14 @@ $data = $sql->fetch_assoc();
                                                     ?>
                                                     </td>
                                                     <td><?php echo $data['start'] ?></td>
-                                                    <?php
-                                                        $date = new DateTime($data['start']);
-                                                        $now = new DateTime();
-                                                        $interval = $now->diff($date);
-                                                        $anu = strtotime($data['time']);
-                                                    ?>
+                                                        
                                                     
                                                     <td 
                                                     <?php
+                                                    $date = new DateTime($data['start']);
+                                                    $now = new DateTime();
+                                                    $interval = $now->diff($date);
+                                                    $anu = strtotime($data['time']);
                                                     if ($data['target'] == "after"){
                                                         if($interval->h >= date('H', $anu)){
                                                             echo "class='bg-success white'";
@@ -106,7 +122,11 @@ $data = $sql->fetch_assoc();
                                                         </fieldset>
                                                         <fieldset class="form-group">
                                                             <label for="basicinput">Remark</label>
-                                                            <textarea name="remark" name="remark" rows="3" class="form-control"></textarea>
+                                                            <textarea name="remark" rows="1" class="form-control"></textarea>
+                                                        </fieldset>
+                                                        <fieldset class="form-group">
+                                                            <label for="basicinput">Description</label>
+                                                            <textarea name="description" rows="3" class="form-control"></textarea>
                                                         </fieldset>
                                                         <div class="float-right">
                                                             <button type="reset" class="btn btn-danger ">
@@ -136,6 +156,7 @@ if (isset($_POST['submit'])) {
     $action = $_POST['action'];
     $date = $_POST['date'];
     $remark = $_POST['remark'];
+    $description = $_POST['description'];
     $namaFile = $_FILES['berkas']['name'];
     $filetype = $_FILES['berkas']['type'];
     $namaSementara = $_FILES['berkas']['tmp_name'];
@@ -146,7 +167,7 @@ if (isset($_POST['submit'])) {
     if (in_array($filetype,$allowed)) {
         $terupload = move_uploaded_file($namaSementara, $dirUpload.$newfile);
         if ($terupload) {
-            $insert = $koneksi->query("INSERT INTO `task_remark`(`task_no`, `action`, `time`, `remark`, `pic`) VALUES ('$tid','$action','$date','$remark','$newfile')");
+            $insert = $koneksi->query("INSERT INTO `task_remark`(`task_no`, `action`, `time`, `remark`, `description`, `pic`) VALUES ('$tid','$action','$date','$remark','$description','$newfile')");
             if ($insert) {
                 if ($action == "Close") {
                     $koneksi->query("UPDATE `task` SET `end`='$date',`status`='0' WHERE `tid`='$tid'");
@@ -154,7 +175,8 @@ if (isset($_POST['submit'])) {
                 ?>
                 <script type="text/javascript">
                     alert("Update Successful");
-                    window.location.href="?page=task"
+                    window.opener.location.href = window.opener.location.href; 
+                    window.close();
                 </script>
                 <?php
             }else{

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include '../db/conn.php';
 date_default_timezone_set("Asia/Bangkok");
 session_start();
@@ -95,6 +96,8 @@ include '../assets/assets/php/left-menu.php';
                     include "page/task/table.php";
                 }elseif ($action == "remark") {
                     include "page/task/addremark.php";
+                }elseif ($action == "view") {
+                    include "page/task/view.php";
                 }
             }
             elseif($page== ""){
@@ -129,6 +132,8 @@ if ($page == "position") {
     include "page/segmentation/modal.php";
 }elseif ($page == "company"){
     include "page/company/modal.php";
+}elseif ($page == "task"){
+    include "page/task/modal.php";
 }
 ?>
 <script type="text/javascript">

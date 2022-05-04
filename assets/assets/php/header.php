@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/bootstrap-extended.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/colors.css">
     <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../assets/app-assets/css/pages/timeline.css">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->

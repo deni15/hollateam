@@ -2,28 +2,24 @@
 session_start();
 include '../../../db/conn.php';
 $id = $_GET['delete'];
-if ($_SESSION['level_user'] != 1) {
+if ($_SESSION['level_user'] != 4) {
     ?>
     <script type="text/javascript">
-        alert("You don't have access to delete this company");
+        alert("You don't have access to delete this task");
         window.location.href="../../index.php";   
     </script>
     <?php
 }else{
-    $updateuser = $koneksi->query("UPDATE `user` SET `company`='0',`status`='0' WHERE `company`='$id'");
-    if ($updateuser) {
-    $delete = $koneksi->query("DELETE FROM `tbl_company` WHERE `CID`='$id'");
+    $delete = $koneksi->query("DELETE FROM `task`  WHERE `tid`='$id'");
     if ($delete) {
         
         ?>
         <script type="text/javascript">
-            alert("Successfully deleted this company");
-            window.location.href="../../index.php?page=company";   
+            alert("Successfully deleted this task");
+            window.location.href="../../index.php?page=task";   
         </script>
         <?php
     }else{
-        echo $koneksi->error;
-    }}else{
         echo $koneksi->error;
     }
 }
